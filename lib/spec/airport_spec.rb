@@ -14,10 +14,16 @@ describe Airport do
   describe '#land' do
     it { is_expected.to respond_to :land }
 
-    it 'lands a plane' do
+    it 'lands a plane in non-stormy weather' do
       airport = Airport.new(1)
       plane = Plane.new
       expect(airport.land(plane)).to eq [plane]
+    end
+
+    it 'lands a plane in stormy weather' do
+      airport = Airport.new(1)
+      plane = Plane.new
+      expect(airport.land(plane)).to raise_error "Cannot Land Weather Too Stormy"
     end
   end
 
